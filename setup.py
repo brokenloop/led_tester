@@ -1,5 +1,3 @@
-# This entire section was copied from the notes, needs to be changed
-
 from setuptools import setup
 
 setup(name="ledtester",
