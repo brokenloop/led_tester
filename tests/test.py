@@ -1,12 +1,6 @@
 from led_tester import main
 
 
-def first_test():
-    assert main.add(2, 2) == 4
-    assert main.add(5, 5) == 10
-    assert main.add(1, 1) == 2
-
-
 def test_generate():
     size = 10
     myarray = main.Led(size)
@@ -18,23 +12,49 @@ def test_generate():
             assert myarray.led_array[i][j] == True
 
 
-def test_commands():
-    
+def test_off():
     size = 10
-    x1, y1, x2, y2 = 0, 0, 5, 5
     led = main.Led(size)
-    led.turn_off(x1, y1, x2, y2)
-    for i in range(x1, x2):
-        for j in range(y1, y2):
+    led.turn_off(0, 0, size, size)
+    for i in range(size):
+        for j in range(size):
             assert led.led_array[i][j] == False
 
-    led.turn_on(x1, y1, x2, y2)
-    for i in range(x1, x2):
-        for j in range(y1, y2):
+
+def test_on():
+    size = 10
+    led = main.Led(size)
+    led.turn_off(0, 0, size, size)
+    led.turn_on(0, 0, size, size)
+    for i in range(size):
+        for j in range(size):
             assert led.led_array[i][j] == True
 
-    led.switch(x1, y1, x2, y2)
-    for i in range(x1, x2):
-        for j in range(y1, y2):
+
+def test_switch():
+    size = 10
+    led = main.Led(size)
+    led.switch(0, 0, size, size)
+    for i in range(size):
+        for j in range(size):
             assert led.led_array[i][j] == False
 
+    led.switch(0, 0, size, size)
+    for i in range(size):
+        for j in range(size):
+            assert led.led_array[i][j] == True
+
+
+def test_number_on():
+    size = 10
+    led = main.Led(size)
+    assert led.number_on() == size**2
+
+    led.turn_off(0, 0, size, size)
+    assert led.number_on() == 0
+
+
+def test_sanitise():
+    size = 10
+    led = main.Led(size)
+    assert led.sanitize([-5, 0, 5, 10, 15]) == [0, 0, 5, 10, 10]
