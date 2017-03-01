@@ -7,11 +7,8 @@ setup(name="ledtester",
       author="Daniel Jordan",
       author_email="daniel.jordan1@ucdconnect.ie",
       licence="GPL3",
-      packages=['src'],
+      packages=['led_tester'],
       entry_points={
-        'console_scripts':['led_tester=src.main:main']
-        },
-      install_requires=[
-          'numpy',
-      ],
+        'console_scripts':['led_tester=led_tester.main:main']
+        }
       )
