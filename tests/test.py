@@ -4,12 +4,10 @@ from led_tester import main
 def test_generate():
     size = 10
     myarray = main.Led(size)
-    assert len(myarray.led_array) == size
 
     for i in range(size):
-        assert len(myarray.led_array[i]) == size
         for j in range(size):
-            assert myarray.led_array[i][j] == True
+            assert myarray.led_array[i][j] == False
 
 
 def test_off():
@@ -73,4 +71,4 @@ def test_sanitise():
     led = main.Led(size)
     assert led.sanitize([-5, 0, 5, 10, 15]) == [0, 0, 5, 10, 10]
 
-def test_results():
+
